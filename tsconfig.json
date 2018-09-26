@@ -1,0 +1,15 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+  },
+  "include": [
+      "./src/"
+  ]
+}

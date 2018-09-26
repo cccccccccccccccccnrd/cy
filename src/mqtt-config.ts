@@ -1,9 +1,11 @@
-const mosca = require('mosca')
-const mqtt = require('mqtt')
+import * as mosca from 'mosca'
+import * as mqtt from 'mqtt'
+import { MqttClient } from 'mqtt'
 
-let server, client
+export let server: mosca.Server
+export let client: MqttClient
 
-function serve (port) {
+export function serve (port: number) {
   const settings = {
     http: {
       port,
@@ -20,11 +22,11 @@ function serve (port) {
     console.log('mqtt-server is running on port', settings.http.port)
   })
 
-  server.on('clientConnected', (client) => {
+  server.on('clientConnected', (client: mosca.Client) => {
     console.log(`${ Date.now() } client connected ${ client.id }`)
   })
 
-  server.on('clientDisconnected', (client) => {
+  server.on('clientDisconnected', (client: mosca.Client) => {
     console.log(`${ Date.now() } client disconnected ${ client.id }`)
   })
 
@@ -40,15 +42,10 @@ function serve (port) {
   })
 }
 
-function get (clientOrServer) {
+export function get (clientOrServer: string) {
   if (clientOrServer === 'server') return server
   if (clientOrServer === 'client') return client
   else {
-    throw Error(`Could not find ${clientOrServer}`)
+    return new Error(`Could not find ${clientOrServer}`)
   }
-}
-
-module.exports = {
-  serve,
-  get
 }

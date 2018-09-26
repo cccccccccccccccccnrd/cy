@@ -1,10 +1,10 @@
-const path = require('path')
-const express = require('express')
+import * as path from 'path'
+import * as express from 'express'
 
-function serve (port) {
+export function serve (port: number) {
   const settings = {
     port,
-    staticPath: path.join(__dirname, '/public')
+    staticPath: path.join(__dirname, '../public')
   }
   const server = express()
 
@@ -14,8 +14,4 @@ function serve (port) {
   console.log(`http-server serving on port ${settings.port}`)
 
   return server
-}
-
-module.exports = {
-  serve
 }
