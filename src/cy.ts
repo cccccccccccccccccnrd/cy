@@ -7,10 +7,8 @@ mqtt.serve(1717)
 
 setup.board.on('ready', function () {
   setup.init()
-  console.log('lolo')
 
   mqtt.client.on('message', function (topic: any, message: any) {
-    console.log('hi')
     if (topic === setup.topic) {
       const state = JSON.parse(message)
       updateSteppers(state)
