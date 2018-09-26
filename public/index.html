@@ -17,9 +17,23 @@
     <button id="stepper-z">01-Z</button>
   </section>
   <section>
-    <button>02-X</button>
-    <button>02-Y</button>
-    <button>02-Z</button>
+    <textarea id="state">
+    {
+      "stepperX": {
+        "steps": 100,
+        "direction": 0
+      },
+      "stepperY": {
+        "steps": 100,
+        "direction": 0
+      },
+      "stepperZ": {
+        "steps": 100,
+        "direction": 0
+      }
+    }
+    </textarea>
+    <button id="state-button">publish</button>
   </section>
 
   <script src="main.js"></script>

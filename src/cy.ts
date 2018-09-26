@@ -1,6 +1,9 @@
 import * as setup from './config'
 import * as http from './http-config'
 import * as mqtt from './mqtt-config'
+import { Devices, State } from './constants'
+
+process.on('warning', e => console.warn(e.stack))
 
 http.serve(1616)
 mqtt.serve(1717)
@@ -10,26 +13,34 @@ setup.board.on('ready', function () {
 
   mqtt.client.on('message', function (topic: any, message: any) {
     if (topic === setup.topic) {
+      console.log(message.toString())
+      console.log(JSON.parse(message.toString()))
       const state = JSON.parse(message)
       updateSteppers(state)
     }
   })
 })
 
-function updateSteppers (state: any) {
+function updateSteppers (state: State) {
   if (state.stepperX) {
-    setup.devices.stepperX.step({ steps: 1600, direction: 1 }, () => {
-      console.log(`X moved 1600 steps`)
+    setup.devices.stepperX.step({ steps: state.stepperX.steps, direction: state.stepperX.direction }, () => {
+      console.log(`X ${ state.stepperX.steps } ${ state.stepperX.direction }`)
     })
-  } else if (state.stepperY) {
-    setup.devices.stepperY.step({ steps: 1600, direction: 1 }, () => {
-      console.log(`Y moved 1600 steps`)
+  }
+  
+  if (state.stepperY) {
+    setup.devices.stepperY.step({ steps: state.stepperY.steps, direction: state.stepperY.direction }, () => {
+      console.log(`Y ${ state.stepperY.steps } ${ state.stepperY.direction }`)
     })
-  } else if (state.stepperZ) {
-    setup.devices.stepperZ.step({ steps: 1600, direction: 1 }, () => {
-      console.log(`Z moved 1600 steps`)
+  }
+  
+  if (state.stepperZ) {
+    setup.devices.stepperZ.step({ steps: state.stepperZ.steps, direction: state.stepperZ.direction }, () => {
+      console.log(`Z ${ state.stepperZ.steps } ${ state.stepperZ.direction }`)
     })
-  } else {
+  }
+  
+  else {
     console.log(`no move`)
   }
 }

@@ -1,21 +1,25 @@
 import * as five from 'johnny-five'
+import { Devices, State } from './constants'
 
 export const board = new five.Board()
-
-interface Devices {
-  stepperX: five.Stepper
-  stepperY: five.Stepper
-  stepperZ: five.Stepper
-}
 
 export let devices: Devices
 
 export const topic = 'actor/stepper'
 
-export let state = {
-  stepperX: false,
-  stepperY: false,
-  stepperZ: false,
+export let state: State = {
+  stepperX: {
+    steps: 100,
+    direction: 0,
+  },
+  stepperY: {
+    steps: 100,
+    direction: 0,
+  },
+  stepperZ: {
+    steps: 100,
+    direction: 0,
+  },
 }
 
 export function init () {
@@ -44,14 +48,5 @@ export function init () {
         dir: 7,
       }
     }),
-  }
-}
-
-export function get (device: string) {
-  if (device === 'stepperX') return devices.stepperX
-  if (device === 'stepperY') return devices.stepperY
-  if (device === 'stepperZ') return devices.stepperZ
-  else {
-    throw Error(`Could not find ${device}`)
   }
 }

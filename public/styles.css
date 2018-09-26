@@ -36,3 +36,17 @@ button:focus {
 button:active {
   background: rgba(0, 0, 255, 0.9);
 }
+
+textarea {
+  width: 247.5px;
+  height: 108px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 1em;
+  color: white;
+  background: blue;
+  border: 0;
+}
+
+textarea:focus {
+  outline: 0;
+}

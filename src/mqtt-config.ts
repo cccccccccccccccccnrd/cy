@@ -41,11 +41,3 @@ export function serve (port: number) {
     client.subscribe('actor/#')
   })
 }
-
-export function get (clientOrServer: string) {
-  if (clientOrServer === 'server') return server
-  if (clientOrServer === 'client') return client
-  else {
-    return new Error(`Could not find ${clientOrServer}`)
-  }
-}
