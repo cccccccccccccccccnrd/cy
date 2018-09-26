@@ -27,7 +27,7 @@ function updateSteppers (state: any) {
     })
   } else if (state.stepperZ) {
     setup.devices.stepperZ.step({ steps: 1600, direction: 1 }, () => {
-      console.log(`Y moved 1600 steps`)
+      console.log(`Z moved 1600 steps`)
     })
   } else {
     console.log(`no move`)

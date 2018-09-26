@@ -4,6 +4,10 @@ html, body {
 }
 
 body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  height: 100vh;
   font-family: 'Inconsolata', monospace;
   font-size: 15px;
   overflow: hidden;
@@ -13,18 +17,22 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 button {
-  width: 100px;
-  height: 100px;
+  padding: 0.2em;
   font-family: 'Inconsolata', monospace;
-  font-size: 3em;
-  background: none;
+  font-size: 5em;
+  color: white;
+  background: rgba(0, 0, 255, 1);
   cursor: pointer;
+  border: 0;
 }
 
 button:focus {
   outline: 0;
+}
+
+button:active {
+  background: rgba(0, 0, 255, 0.9);
 }
