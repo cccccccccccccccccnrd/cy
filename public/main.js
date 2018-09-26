@@ -12,7 +12,7 @@ const options = {
   clientId: 'web-client-' + Math.random().toString(16).substr(2, 8)
 }
 
-const client = mqtt.connect('mqtt://localhost:1717', options)
+const client = mqtt.connect('mqtt://192.168.178.70:1717', options)
 
 client.on('connect', function () {
   console.log('mqtt-client connected as ', options.clientId)
